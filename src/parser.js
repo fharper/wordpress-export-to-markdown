@@ -66,10 +66,16 @@ function collectPosts(data, postTypes, config) {
 					imageUrls: []
 				},
 				frontmatter: {
-					title: getPostTitle(post),
-					date: getPostDate(post),
-					categories: getCategories(post),
-					tags: getTags(post)
+					ID: getPostId(post),
+					post_title: getPostTitle(post),
+					post_name: getPostSlug(post),
+					author: 'Frédéric Harper',
+					post_date: getPostDate(post),
+					layout: 'post',
+					link: getPostLink(post),
+					published: 'true',
+					tags: getTags(post),
+					categories: getCategories(post)
 				},
 				content: translator.getPostContent(post, turndownService, config)
 			}));
@@ -107,6 +113,10 @@ function getPostCoverImageId(post) {
 
 function getPostTitle(post) {
 	return post.title[0];
+}
+
+function getPostLink(post) {
+	return post.link[0];
 }
 
 function getPostDate(post) {
